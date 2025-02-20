@@ -1,6 +1,6 @@
 <div class="main">
   <ul>
-    <li *ngFor="let contact of contacts" class="contact-item">
+    <li *ngFor="let contact of filteredContacts" class="contact-item">
       <span class="avatar-container">
         <div class="status-bubbles">
           <div *ngIf="contact.contato_sn_ativo" class="bubble active"></div>

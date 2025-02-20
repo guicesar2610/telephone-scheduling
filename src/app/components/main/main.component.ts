@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
-export class MainComponent {}
+export class MainComponent {
+  filterValue!: string;
+
+  onFilterChange(value: string) {
+    this.filterValue = value;
+  }
+}

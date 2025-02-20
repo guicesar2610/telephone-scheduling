@@ -36,10 +36,7 @@ export class ContactListModalComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log(this.contactForm.value);
       this.dialogRef.close(this.contactForm.value);
-    } else {
-      console.log('Formulário inválido');
     }
   }
 }

@@ -1,5 +1,5 @@
 <div class="main">
   <app-header></app-header>
-  <app-search-filter></app-search-filter>
-  <app-contact-list></app-contact-list>
+  <app-search-filter (filterChanged)="onFilterChange($event)"></app-search-filter>
+  <app-contact-list [filter]="filterValue"></app-contact-list>
 </div>
