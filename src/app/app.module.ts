@@ -12,6 +12,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/utils/http-loader-factory';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
     HeaderComponent,
     MainComponent,
     SearchFilterComponent,
+    ContactListComponent,
   ],
   imports: [
     BrowserModule,

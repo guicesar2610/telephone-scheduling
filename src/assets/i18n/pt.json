@@ -5,7 +5,8 @@
   "button": {
     "label-open": "Abrir",
     "label-filter": "Filtrar",
-    "label-clean": "Limpar"
+    "label-clean": "Limpar",
+    "label-edit": "Editar"
   },
   "filter": {
     "title": "Filtro",

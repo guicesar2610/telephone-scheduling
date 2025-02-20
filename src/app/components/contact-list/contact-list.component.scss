@@ -1,0 +1,103 @@
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  background-color: rgba(71, 100, 255, 0.13);
+  max-width: 60%;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  margin-bottom: 10px;
+}
+
+.contact-item span {
+  color: var(--white);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-item img {
+  width: 24px;
+  margin-right: 5px;
+}
+
+.favorite-icon {
+  color: #ffcc00;
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.edit-button {
+  background: none;
+  color: var(--white);
+  border: 1px solid var(--white);
+  padding: 3px 9px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  text-transform: uppercase;
+}
+
+.edit-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.status-bubbles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.bubble {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.bubble.active {
+  background-color: green;
+}
+
+.bubble.inactive {
+  background-color: red;
+}
+
+@media (max-width: 768px) {
+  .main {
+    max-width: 90%;
+    padding: 10px;
+  }
+  ul {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 375px) {
+  ul {
+    max-height: 200px;
+  }
+}

@@ -1,0 +1,17 @@
+<div class="main">
+  <ul>
+    <li *ngFor="let contact of contacts" class="contact-item">
+      <span class="avatar-container">
+        <div class="status-bubbles">
+          <div *ngIf="contact.contato_sn_ativo" class="bubble active"></div>
+          <div *ngIf="!contact.contato_sn_ativo" class="bubble inactive"></div>
+        </div>
+
+        <img src="/assets/images/icons-contacts.png" />
+        {{ contact.contato_nome }}
+        <i *ngIf="contact.contato_sn_favorito" class="favorite-icon filled" aria-hidden="true">★</i>
+      </span>
+      <button class="edit-button">{{ 'button.label-edit' | translate }}</button>
+    </li>
+  </ul>
+</div>
