@@ -10,13 +10,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/utils/http-loader-factory';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, HeaderComponent, MainComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainComponent,
     HttpClientModule,
     ReactiveFormsModule,
     TranslateModule.forRoot({
