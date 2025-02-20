@@ -11,9 +11,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/utils/http-loader-factory';
 import { HeaderComponent } from './components/header/header.component';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HeaderComponent, MainComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HeaderComponent,
+    MainComponent,
+    SearchFilterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

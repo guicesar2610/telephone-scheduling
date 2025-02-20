@@ -1,0 +1,24 @@
+<div class="main">
+  <p>{{ 'filter.title' | translate }}</p>
+  <form name="formFilter" [formGroup]="formFilter" novalidate>
+    <div class="div-input-filter">
+      <div class="div-input-filter-secondary">
+        <span>{{ 'filter.name-label' | translate }}</span>
+        <input
+          id="input-name"
+          name="input-name"
+          type="text"
+          formControlName="name"
+          placeholder="{{ 'filter.name-placeholder' | translate }}"
+        />
+      </div>
+
+      <div class="div-button-filter">
+        <button [disabled]="!formFilter.get('name')?.value" (click)="onFilter()">
+          {{ 'button.label-filter' | translate }}
+        </button>
+        <button (click)="onClean()">{{ 'button.label-clean' | translate }}</button>
+      </div>
+    </div>
+  </form>
+</div>

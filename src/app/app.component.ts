@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'telephone-scheduling';
   supportLanguages = ['en', 'pt'];
 
   constructor(private translateService: TranslateService) {

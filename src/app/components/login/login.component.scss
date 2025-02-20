@@ -14,7 +14,8 @@ img {
 }
 
 h1 {
-  color: white;
+  color: var(--white);
+  text-transform: uppercase;
 }
 
 button {
@@ -22,13 +23,14 @@ button {
   height: 40px;
   border: none;
   border-radius: 20px;
-  background-color: white;
+  background-color: var(--white);
   color: var(--primary);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
 }
 
 button:hover {

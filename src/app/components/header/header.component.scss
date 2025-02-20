@@ -9,9 +9,11 @@
 }
 
 h1 {
-  color: white;
+  font-size: 28px;
+  color: var(--white);
+  text-transform: uppercase;
 }
 
 img {
-  width: 2.5%;
+  width: 40px;
 }
