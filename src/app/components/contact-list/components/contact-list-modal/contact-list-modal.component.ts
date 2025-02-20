@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IContactValues } from '../../interfaces/icontact-list-values.interface';
+import { CONTACTS } from '../../contacts.mock';
 
 @Component({
   selector: 'app-contact-list-modal',
@@ -21,12 +22,13 @@ export class ContactListModalComponent implements OnInit {
   ngOnInit() {
     this.title = this.data ? 'modal.title-update' : 'modal.title-add';
     this.contactForm = this.formBuilder.group({
-      name: [this.data?.contato_nome || '', Validators.required],
-      email: [this.data?.contato_email || '', [Validators.required, Validators.email]],
-      cellPhone: [this.data?.contato_celular || '', Validators.required],
-      telephone: [this.data?.contato_telefone || '', Validators.required],
-      favorite: [this.data?.contato_sn_favorito || false],
-      active: [this.data?.contato_sn_ativo || false],
+      contato_nome: [this.data?.contato_nome || '', Validators.required],
+      contato_email: [this.data?.contato_email || '', [Validators.required, Validators.email]],
+      contato_celular: [this.data?.contato_celular || '', Validators.required],
+      contato_telefone: [this.data?.contato_telefone || '', Validators.required],
+      contato_sn_favorito: [this.data?.contato_sn_favorito || false],
+      contato_sn_ativo: [this.data?.contato_sn_ativo || false],
+      contato_dh_cad: [this.data?.contato_dh_cad || ''],
     });
   }
 
@@ -36,7 +38,27 @@ export class ContactListModalComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      this.dialogRef.close(this.contactForm.value);
+      const formData = this.contactForm.value;
+
+      if (!this.data) {
+        const newId = CONTACTS.length > 0 ? Math.max(...CONTACTS.map(c => c.contato_id)) + 1 : 1;
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('.')[0];
+        const newContact: IContactValues = {
+          contato_id: newId,
+          ...formData,
+          contato_dh_cad: formattedDate,
+        };
+
+        this.dialogRef.close(newContact);
+      } else {
+        const updatedContact: IContactValues = {
+          ...this.data,
+          ...formData,
+        };
+
+        this.dialogRef.close(updatedContact);
+      }
     }
   }
 }

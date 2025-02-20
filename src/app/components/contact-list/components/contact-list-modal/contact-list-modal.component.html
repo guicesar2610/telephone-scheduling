@@ -7,26 +7,26 @@
 
     <form name="contactForm" [formGroup]="contactForm" novalidat>
       <label for="name">{{ 'modal.label-name' | translate }}</label>
-      <input type="text" id="name" formControlName="name" />
+      <input type="text" id="name" formControlName="contato_nome" />
 
       <label for="email">{{ 'modal.label-email' | translate }}</label>
-      <input type="email" id="email" formControlName="email" />
+      <input type="email" id="email" formControlName="contato_email" />
 
       <label for="cellPhone">{{ 'modal.label-cellPhone' | translate }}</label>
-      <input type="text" id="cellPhone" formControlName="cellPhone" />
+      <input type="text" id="cellPhone" formControlName="contato_celular" />
 
       <label for="telephone">{{ 'modal.label-telephone' | translate }}</label>
-      <input type="text" id="telephone" formControlName="telephone" />
+      <input type="text" id="telephone" formControlName="contato_telefone" />
 
       <div style="display: flex">
-        <input type="checkbox" id="favorite" formControlName="favorite" />
+        <input type="checkbox" id="favorite" formControlName="contato_sn_favorito" />
         <label for="favorite" class="checkbox-label">{{
           'modal.label-favorite' | translate
         }}</label>
       </div>
 
       <div style="display: flex">
-        <input type="checkbox" id="active" formControlName="active" />
+        <input type="checkbox" id="active" formControlName="contato_sn_ativo" />
         <label for="active" class="checkbox-label">{{ 'modal.label-active' | translate }}</label>
       </div>
 
