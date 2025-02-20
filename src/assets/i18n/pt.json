@@ -6,11 +6,22 @@
     "label-open": "Abrir",
     "label-filter": "Filtrar",
     "label-clean": "Limpar",
-    "label-edit": "Editar"
+    "label-edit": "Editar",
+    "label-add": "+ Adicionar Contato"
   },
   "filter": {
     "title": "Filtro",
     "name-label": "Nome:",
     "name-placeholder": "Digite o nome:"
+  },
+  "modal": {
+    "title-add": "Adicionar Contato",
+    "title-update": "Editar Contato",
+    "label-name": "Nome:",
+    "label-email": "E-mail:",
+    "label-cellPhone": "Celular",
+    "label-telephone": "Telefone",
+    "label-favorite": "Favorito",
+    "label-active": "Ativo"
   }
 }

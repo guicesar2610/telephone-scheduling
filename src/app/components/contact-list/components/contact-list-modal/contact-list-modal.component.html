@@ -1,0 +1,38 @@
+<div class="main">
+  <div class="modal-content">
+    <div class="div-title">
+      <p>{{ title | translate }}</p>
+      <button class="close-button" (click)="onClose()">X</button>
+    </div>
+
+    <form name="contactForm" [formGroup]="contactForm" novalidat>
+      <label for="name">{{ 'modal.label-name' | translate }}</label>
+      <input type="text" id="name" formControlName="name" />
+
+      <label for="email">{{ 'modal.label-email' | translate }}</label>
+      <input type="email" id="email" formControlName="email" />
+
+      <label for="cellPhone">{{ 'modal.label-cellPhone' | translate }}</label>
+      <input type="text" id="cellPhone" formControlName="cellPhone" />
+
+      <label for="telephone">{{ 'modal.label-telephone' | translate }}</label>
+      <input type="text" id="telephone" formControlName="telephone" />
+
+      <div style="display: flex">
+        <input type="checkbox" id="favorite" formControlName="favorite" />
+        <label for="favorite" class="checkbox-label">{{
+          'modal.label-favorite' | translate
+        }}</label>
+      </div>
+
+      <div style="display: flex">
+        <input type="checkbox" id="active" formControlName="active" />
+        <label for="active" class="checkbox-label">{{ 'modal.label-active' | translate }}</label>
+      </div>
+
+      <button class="submit-button" (click)="onSubmit()" [disabled]="contactForm.invalid">
+        Salvar
+      </button>
+    </form>
+  </div>
+</div>

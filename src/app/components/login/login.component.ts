@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private translate: TranslateService
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     localStorage.removeItem('token_phone_scheduling');

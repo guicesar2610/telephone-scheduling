@@ -1,0 +1,137 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.div-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-button {
+  background: none;
+  color: var(--primary);
+  border: 0px solid var(--primary);
+  padding: 3px 9px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  text-transform: uppercase;
+  align-self: flex-end; /* Posiciona o botão de fechar no canto superior direito */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type='text'],
+input[type='email'] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.checkbox-label input {
+  margin-right: 8px;
+  margin-bottom: 15px;
+}
+
+.submit-button {
+  padding: 10px 15px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.submit-button:hover {
+  background-color: var(--primary);
+  transform: scale(1.05);
+}
+
+.submit-button:disabled {
+  background-color: rgba(169, 169, 169, 0.5);
+  cursor: not-allowed;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 15px;
+  }
+
+  .close-button {
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input[type='text'],
+  input[type='email'] {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .submit-button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .modal-content {
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  .close-button {
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  input[type='text'],
+  input[type='email'] {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .submit-button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

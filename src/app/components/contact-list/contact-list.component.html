@@ -11,10 +11,12 @@
         {{ contact.contato_nome }}
         <i *ngIf="contact.contato_sn_favorito" class="favorite-icon filled" aria-hidden="true">★</i>
       </span>
-      <button class="edit-button">{{ 'button.label-edit' | translate }}</button>
+      <button class="edit-button" (click)="onEdit(contact)">
+        {{ 'button.label-edit' | translate }}
+      </button>
     </li>
   </ul>
 </div>
 <div class="div-add-contact">
-  <button class="edit-button">+ Adicionar Contato</button>
+  <button (click)="onAdd()" class="edit-button">{{ 'button.label-add' | translate }}</button>
 </div>

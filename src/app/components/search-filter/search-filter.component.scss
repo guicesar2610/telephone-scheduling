@@ -67,7 +67,7 @@ p {
 }
 
 .div-button-filter button:hover {
-  background-color: rgba(71, 100, 255, 0.5);
+  background-color: var(--primary);
   transform: scale(1.05);
 }
 
@@ -76,7 +76,7 @@ p {
 }
 
 .div-button-filter button:last-of-type {
-  background-color: rgba(71, 100, 255, 0.5);
+  background-color: var(--primary);
 }
 
 .div-button-filter button:disabled {
