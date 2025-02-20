@@ -7,11 +7,14 @@
           <div *ngIf="!contact.contato_sn_ativo" class="bubble inactive"></div>
         </div>
 
-        <img src="/assets/images/icons-contacts.png" />
+        <img src="/assets/images/icons-contacts.png" alt="icons-contacts" />
         {{ contact.contato_nome }}
         <i *ngIf="contact.contato_sn_favorito" class="favorite-icon filled" aria-hidden="true">★</i>
       </span>
       <button class="edit-button">{{ 'button.label-edit' | translate }}</button>
     </li>
   </ul>
+</div>
+<div class="div-add-contact">
+  <button class="edit-button">+ Adicionar Contato</button>
 </div>
