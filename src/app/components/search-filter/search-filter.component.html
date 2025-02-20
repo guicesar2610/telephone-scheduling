@@ -14,10 +14,10 @@
       </div>
 
       <div class="div-button-filter">
+        <button (click)="onClean()">{{ 'button.label-clean' | translate }}</button>
         <button [disabled]="!formFilter.get('name')?.value" (click)="onFilter()">
           {{ 'button.label-filter' | translate }}
         </button>
-        <button (click)="onClean()">{{ 'button.label-clean' | translate }}</button>
       </div>
     </div>
   </form>
