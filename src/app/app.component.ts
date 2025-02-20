@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'telephone-scheduling';
+  supportLanguages = ['en', 'pt'];
+
+  constructor(private translateService: TranslateService) {
+    this.translateService.addLangs(this.supportLanguages);
+    this.translateService.setDefaultLang('pt');
+  }
 }
