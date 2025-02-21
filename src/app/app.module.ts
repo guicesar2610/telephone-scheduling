@@ -17,6 +17,7 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { MatError } from '@angular/material/form-field';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/utils/http-loader-factory';
 import { HeaderComponent } from './components/header/header.component';
@@ -48,6 +49,7 @@ import { ContactListModalComponent } from './components/contact-list/components/
     MatDialogClose,
     MatDialogContent,
     MatDialogTitle,
+    MatError,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

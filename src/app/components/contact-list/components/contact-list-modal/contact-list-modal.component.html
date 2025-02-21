@@ -5,29 +5,103 @@
       <button class="close-button" (click)="onClose()">X</button>
     </div>
 
-    <form name="contactForm" [formGroup]="contactForm" novalidat>
+    <form [formGroup]="contactForm" novalidate>
       <label for="name">{{ 'modal.label-name' | translate }}</label>
-      <input type="text" id="name" formControlName="contato_nome" />
+      <input
+        class="modal-input"
+        type="text"
+        id="name"
+        formControlName="contato_nome"
+        [ngClass]="{
+          'input-error':
+            contactForm.get('contato_nome')?.invalid && contactForm.get('contato_nome')?.touched,
+        }"
+      />
+      <mat-error
+        class="validation-error"
+        *ngIf="contactForm.get('contato_nome')?.invalid && contactForm.get('contato_nome')?.touched"
+      >
+        {{ getErrorMessage('contato_nome') }}
+      </mat-error>
 
       <label for="email">{{ 'modal.label-email' | translate }}</label>
-      <input type="email" id="email" formControlName="contato_email" />
+      <input
+        class="modal-input"
+        type="email"
+        id="email"
+        formControlName="contato_email"
+        [ngClass]="{
+          'input-error':
+            contactForm.get('contato_email')?.invalid && contactForm.get('contato_email')?.touched,
+        }"
+      />
+      <mat-error
+        class="validation-error"
+        *ngIf="
+          contactForm.get('contato_email')?.invalid && contactForm.get('contato_email')?.touched
+        "
+      >
+        {{ getErrorMessage('contato_email') }}
+      </mat-error>
 
       <label for="cellPhone">{{ 'modal.label-cellPhone' | translate }}</label>
-      <input type="text" id="cellPhone" formControlName="contato_celular" />
+      <input
+        class="modal-input"
+        type="text"
+        id="cellPhone"
+        maxlength="11"
+        formControlName="contato_celular"
+        [ngClass]="{
+          'input-error':
+            contactForm.get('contato_celular')?.invalid &&
+            contactForm.get('contato_celular')?.touched,
+        }"
+      />
+      <mat-error
+        class="validation-error"
+        *ngIf="
+          contactForm.get('contato_celular')?.invalid && contactForm.get('contato_celular')?.touched
+        "
+      >
+        {{ getErrorMessage('contato_celular') }}
+      </mat-error>
 
       <label for="telephone">{{ 'modal.label-telephone' | translate }}</label>
-      <input type="text" id="telephone" formControlName="contato_telefone" />
+      <input
+        class="modal-input"
+        type="text"
+        id="telephone"
+        maxlength="10"
+        formControlName="contato_telefone"
+        [ngClass]="{
+          'input-error':
+            contactForm.get('contato_telefone')?.invalid &&
+            contactForm.get('contato_telefone')?.touched,
+        }"
+      />
+      <mat-error
+        class="validation-error"
+        *ngIf="
+          contactForm.get('contato_telefone')?.invalid &&
+          (contactForm.get('contato_telefone')?.touched ||
+            contactForm.get('contato_telefone')?.dirty)
+        "
+      >
+        {{ getErrorMessage('contato_telefone') }}
+      </mat-error>
 
       <div style="display: flex">
         <input type="checkbox" id="favorite" formControlName="contato_sn_favorito" />
-        <label for="favorite" class="checkbox-label">{{
-          'modal.label-favorite' | translate
-        }}</label>
+        <label for="favorite" class="checkbox-label">
+          {{ 'modal.label-favorite' | translate }}
+        </label>
       </div>
 
       <div style="display: flex">
         <input type="checkbox" id="active" formControlName="contato_sn_ativo" />
-        <label for="active" class="checkbox-label">{{ 'modal.label-active' | translate }}</label>
+        <label for="active" class="checkbox-label">
+          {{ 'modal.label-active' | translate }}
+        </label>
       </div>
 
       <button class="submit-button" (click)="onSubmit()" [disabled]="contactForm.invalid">

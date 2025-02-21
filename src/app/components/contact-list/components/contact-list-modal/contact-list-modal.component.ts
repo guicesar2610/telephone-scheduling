@@ -22,13 +22,25 @@ export class ContactListModalComponent implements OnInit {
   ngOnInit() {
     this.title = this.data ? 'modal.title-update' : 'modal.title-add';
     this.contactForm = this.formBuilder.group({
-      contato_nome: [this.data?.contato_nome || '', Validators.required],
-      contato_email: [this.data?.contato_email || '', [Validators.required, Validators.email]],
-      contato_celular: [this.data?.contato_celular || '', Validators.required],
-      contato_telefone: [this.data?.contato_telefone || '', Validators.required],
-      contato_sn_favorito: [this.data?.contato_sn_favorito || false],
-      contato_sn_ativo: [this.data?.contato_sn_ativo || false],
-      contato_dh_cad: [this.data?.contato_dh_cad || ''],
+      contato_nome: [
+        this.data ? this.data.contato_nome : '',
+        [Validators.required, Validators.minLength(2)],
+      ],
+      contato_email: [
+        this.data ? this.data.contato_email : '',
+        [Validators.required, Validators.email],
+      ],
+      contato_celular: [
+        this.data ? this.data.contato_celular : '',
+        [Validators.required, Validators.pattern(/^\d{11}$/)],
+      ],
+      contato_telefone: [
+        this.data ? this.data.contato_telefone : '',
+        [Validators.required, Validators.pattern(/^\d{10}$/)],
+      ],
+      contato_sn_favorito: [this.data ? this.data.contato_sn_favorito : false],
+      contato_sn_ativo: [this.data ? this.data.contato_sn_ativo : false],
+      contato_dh_cad: [this.data ? this.data.contato_dh_cad : ''],
     });
   }
 
@@ -60,5 +72,30 @@ export class ContactListModalComponent implements OnInit {
         this.dialogRef.close(updatedContact);
       }
     }
+  }
+
+  getErrorMessage(formControlName: string): string {
+    const control = this.contactForm.get(formControlName);
+
+    if (control?.hasError('required')) {
+      return 'Campo obrigatório.';
+    }
+    if (control?.hasError('email')) {
+      return 'Formato de e-mail inválido.';
+    }
+    if (control?.hasError('minlength')) {
+      const requiredLength = control?.errors?.['minlength']?.requiredLength;
+      return `Mínimo de ${requiredLength} caracteres.`;
+    }
+    if (control?.hasError('pattern')) {
+      if (formControlName === 'contato_celular') {
+        return 'Celular deve ter 11 dígitos numéricos.';
+      }
+      if (formControlName === 'contato_telefone') {
+        return 'Telefone deve ter 10 dígitos numéricos.';
+      }
+    }
+
+    return '';
   }
 }

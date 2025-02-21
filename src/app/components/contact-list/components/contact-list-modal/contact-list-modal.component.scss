@@ -41,14 +41,27 @@ form {
   flex-direction: column;
 }
 
-input[type='text'],
-input[type='email'] {
+.modal-input {
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
   margin-bottom: 15px;
+}
+
+.input-error {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.validation-error {
+  color: red;
+  font-size: 12px;
 }
 
 .checkbox-label {
