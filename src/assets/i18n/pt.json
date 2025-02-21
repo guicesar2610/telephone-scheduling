@@ -18,9 +18,13 @@
     "title-add": "Adicionar Contato",
     "title-update": "Editar Contato",
     "label-name": "Nome:",
+    "placeholder-name": "Digite o nome...",
     "label-email": "E-mail:",
+    "placeholder-email": "Digite o email...",
     "label-cellPhone": "Celular",
+    "placeholder-cellPhone": "Digite o celular...",
     "label-telephone": "Telefone",
+    "placeholder-telephone": "Digite o telefone...",
     "label-favorite": "Favorito",
     "label-active": "Ativo"
   }

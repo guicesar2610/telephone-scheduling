@@ -12,6 +12,7 @@
         type="text"
         id="name"
         formControlName="contato_nome"
+        placeholder="{{ 'modal.placeholder-name' | translate }}"
         [ngClass]="{
           'input-error':
             contactForm.get('contato_nome')?.invalid && contactForm.get('contato_nome')?.touched,
@@ -30,6 +31,7 @@
         type="email"
         id="email"
         formControlName="contato_email"
+        placeholder="{{ 'modal.placeholder-email' | translate }}"
         [ngClass]="{
           'input-error':
             contactForm.get('contato_email')?.invalid && contactForm.get('contato_email')?.touched,
@@ -51,6 +53,7 @@
         id="cellPhone"
         maxlength="11"
         formControlName="contato_celular"
+        placeholder="{{ 'modal.placeholder-cellPhone' | translate }}"
         [ngClass]="{
           'input-error':
             contactForm.get('contato_celular')?.invalid &&
@@ -73,6 +76,7 @@
         id="telephone"
         maxlength="10"
         formControlName="contato_telefone"
+        placeholder="{{ 'modal.placeholder-telephone' | translate }}"
         [ngClass]="{
           'input-error':
             contactForm.get('contato_telefone')?.invalid &&
