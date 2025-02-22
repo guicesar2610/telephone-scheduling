@@ -1,4 +1,12 @@
 {
+  "error": {
+    "title-generic": "Error:",
+    "message-generic": "Aconteceu um erro na listagem, favor contatar o suporte!"
+  },
+  "success": {
+    "title-generic": "Sucesso",
+    "message-generic": "Deu tudo certo!"
+  },
   "login": {
     "title": "Lista de Contatos"
   },

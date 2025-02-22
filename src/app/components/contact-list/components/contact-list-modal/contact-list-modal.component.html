@@ -54,6 +54,7 @@
           'input-error':
             contactForm.get('cellphone')?.invalid && contactForm.get('cellphone')?.touched,
         }"
+        (keypress)="onKeyPress($event)"
       />
       <mat-error
         class="validation-error"
@@ -74,6 +75,7 @@
           'input-error':
             contactForm.get('telephone')?.invalid && contactForm.get('telephone')?.touched,
         }"
+        (keypress)="onKeyPress($event)"
       />
       <mat-error
         class="validation-error"

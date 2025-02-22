@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IContactValues } from '../../interfaces/icontact-list-values.interface';
 import { ContactListService } from '../../services/contact-list.service';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-list-modal',
@@ -17,6 +19,8 @@ export class ContactListModalComponent implements OnInit {
     private dialogRef: MatDialogRef<ContactListModalComponent>,
     private formBuilder: FormBuilder,
     private contactListService: ContactListService,
+    private toast: ToastrService,
+    private translate: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: IContactValues
   ) {}
 
@@ -42,33 +46,54 @@ export class ContactListModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  handleSuccess(updatedContact?: IContactValues) {
+    this.translate.get('success.message-generic').subscribe((message: string) => {
+      this.translate.get('success.title-generic').subscribe((title: string) => {
+        this.toast.success(message, title, {
+          closeButton: true,
+        });
+        this.dialogRef.close(updatedContact || null);
+      });
+    });
+  }
+
+  handleError() {
+    this.translate.get('error.message-generic').subscribe((message: string) => {
+      this.translate.get('error.title-generic').subscribe((title: string) => {
+        this.toast.error(message, title, {
+          closeButton: true,
+        });
+      });
+    });
+  }
+
+  onCreate(formData: IContactValues) {
+    this.contactListService.createContactList(formData).subscribe({
+      next: () => this.handleSuccess(),
+      error: () => this.handleError(),
+    });
+  }
+
+  onEdit(formData: IContactValues) {
+    const updatedContact: IContactValues = {
+      ...this.data,
+      ...formData,
+    };
+
+    this.contactListService.updateContactList(updatedContact.id, updatedContact).subscribe({
+      next: () => this.handleSuccess(updatedContact),
+      error: () => this.handleError(),
+    });
+  }
+
   onSubmit() {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
 
       if (!this.data) {
-        this.contactListService.createContactList(formData).subscribe({
-          next: () => {
-            this.dialogRef.close();
-          },
-          error: error => {
-            console.error('Erro ao criar contato', error);
-          },
-        });
+        this.onCreate(formData);
       } else {
-        const updatedContact: IContactValues = {
-          ...this.data,
-          ...formData,
-        };
-
-        this.contactListService.updateContactList(updatedContact.id, updatedContact).subscribe({
-          next: () => {
-            this.dialogRef.close(updatedContact);
-          },
-          error: error => {
-            console.error('Erro ao atualizar contato', error);
-          },
-        });
+        this.onEdit(formData);
       }
     }
   }
@@ -96,5 +121,12 @@ export class ContactListModalComponent implements OnInit {
     }
 
     return '';
+  }
+
+  onKeyPress(event: KeyboardEvent) {
+    const pattern = /^[0-9]*$/;
+    if (!pattern.test(event.key)) {
+      event.preventDefault();
+    }
   }
 }

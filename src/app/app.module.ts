@@ -18,6 +18,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatError } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/utils/http-loader-factory';
 import { HeaderComponent } from './components/header/header.component';
@@ -25,6 +26,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { ContactListModalComponent } from './components/contact-list/components/contact-list-modal/contact-list-modal.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { ContactListModalComponent } from './components/contact-list/components/
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -56,6 +59,11 @@ import { ContactListModalComponent } from './components/contact-list/components/
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
+    }),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      tapToDismiss: true,
     }),
   ],
   providers: [AuthGuard],
