@@ -1,7 +1,8 @@
 {
   "error": {
     "title-generic": "Error:",
-    "message-generic": "Aconteceu um erro na listagem, favor contatar o suporte!"
+    "message-generic": "Aconteceu um erro na listagem, favor contatar o suporte!",
+    "409-message": "O celular informado já foi cadastrado, favor verificar!"
   },
   "success": {
     "title-generic": "Sucesso",
