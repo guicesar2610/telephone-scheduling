@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { IContactValues } from './interfaces/icontact-list-values.interface';
-import { CONTACTS } from './contacts.mock';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactListModalComponent } from './components/contact-list-modal/contact-list-modal.component';
+import { ContactListService } from './services/contact-list.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -11,15 +11,22 @@ import { ContactListModalComponent } from './components/contact-list-modal/conta
 })
 export class ContactListComponent implements OnInit, OnChanges {
   contacts: IContactValues[] = [];
-  filteredContacts: IContactValues[] = [];
 
   @Input() filter!: string;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private contactListService: ContactListService
+  ) {}
 
   ngOnInit() {
-    this.contacts = CONTACTS.sort(a => (a.contato_sn_favorito === true ? -1 : 1));
-    this.filteredContacts = [...this.contacts];
+    this.handleConsultList();
+  }
+
+  handleConsultList() {
+    this.contactListService.getContactList().subscribe((data: IContactValues[]) => {
+      this.contacts = data.sort(a => (a.favorite === true ? -1 : 1));
+    });
   }
 
   ngOnChanges() {
@@ -27,12 +34,18 @@ export class ContactListComponent implements OnInit, OnChanges {
   }
 
   applyFilter() {
+    console.log('this.filter', this.filter);
     if (this.filter) {
-      this.filteredContacts = this.contacts.filter(contact =>
-        contact.contato_nome.toLowerCase().includes(this.filter.toLowerCase())
+      this.contactListService.getContactListByName(this.filter).subscribe(
+        contacts => {
+          this.contacts = contacts;
+        },
+        () => {
+          this.contacts = [];
+        }
       );
     } else {
-      this.filteredContacts = [...this.contacts];
+      this.handleConsultList();
     }
   }
 
@@ -41,13 +54,8 @@ export class ContactListComponent implements OnInit, OnChanges {
       disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe((newContact: IContactValues) => {
-      if (newContact) {
-        CONTACTS.push(newContact);
-
-        this.contacts = CONTACTS.sort(a => (a.contato_sn_favorito === true ? -1 : 1));
-        this.applyFilter();
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      this.handleConsultList();
     });
   }
 
@@ -57,15 +65,8 @@ export class ContactListComponent implements OnInit, OnChanges {
       data: contact,
     });
 
-    dialogRef.afterClosed().subscribe((updatedContact: IContactValues) => {
-      if (updatedContact) {
-        const index = CONTACTS.findIndex(c => c.contato_id === updatedContact.contato_id);
-        if (index > -1) {
-          CONTACTS[index] = updatedContact;
-          this.contacts = CONTACTS.sort(a => (a.contato_sn_favorito === true ? -1 : 1));
-          this.applyFilter();
-        }
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      this.handleConsultList();
     });
   }
 }

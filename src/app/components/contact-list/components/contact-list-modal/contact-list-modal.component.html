@@ -11,18 +11,17 @@
         class="modal-input"
         type="text"
         id="name"
-        formControlName="contato_nome"
+        formControlName="name"
         placeholder="{{ 'modal.placeholder-name' | translate }}"
         [ngClass]="{
-          'input-error':
-            contactForm.get('contato_nome')?.invalid && contactForm.get('contato_nome')?.touched,
+          'input-error': contactForm.get('name')?.invalid && contactForm.get('name')?.touched,
         }"
       />
       <mat-error
         class="validation-error"
-        *ngIf="contactForm.get('contato_nome')?.invalid && contactForm.get('contato_nome')?.touched"
+        *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
       >
-        {{ getErrorMessage('contato_nome') }}
+        {{ getErrorMessage('name') }}
       </mat-error>
 
       <label for="email">{{ 'modal.label-email' | translate }}</label>
@@ -30,43 +29,37 @@
         class="modal-input"
         type="email"
         id="email"
-        formControlName="contato_email"
+        formControlName="email"
         placeholder="{{ 'modal.placeholder-email' | translate }}"
         [ngClass]="{
-          'input-error':
-            contactForm.get('contato_email')?.invalid && contactForm.get('contato_email')?.touched,
+          'input-error': contactForm.get('email')?.invalid && contactForm.get('email')?.touched,
         }"
       />
       <mat-error
         class="validation-error"
-        *ngIf="
-          contactForm.get('contato_email')?.invalid && contactForm.get('contato_email')?.touched
-        "
+        *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
       >
-        {{ getErrorMessage('contato_email') }}
+        {{ getErrorMessage('email') }}
       </mat-error>
 
       <label for="cellPhone">{{ 'modal.label-cellPhone' | translate }}</label>
       <input
         class="modal-input"
         type="text"
-        id="cellPhone"
+        id="cellphone"
         maxlength="11"
-        formControlName="contato_celular"
+        formControlName="cellphone"
         placeholder="{{ 'modal.placeholder-cellPhone' | translate }}"
         [ngClass]="{
           'input-error':
-            contactForm.get('contato_celular')?.invalid &&
-            contactForm.get('contato_celular')?.touched,
+            contactForm.get('cellphone')?.invalid && contactForm.get('cellphone')?.touched,
         }"
       />
       <mat-error
         class="validation-error"
-        *ngIf="
-          contactForm.get('contato_celular')?.invalid && contactForm.get('contato_celular')?.touched
-        "
+        *ngIf="contactForm.get('cellphone')?.invalid && contactForm.get('cellphone')?.touched"
       >
-        {{ getErrorMessage('contato_celular') }}
+        {{ getErrorMessage('cellphone') }}
       </mat-error>
 
       <label for="telephone">{{ 'modal.label-telephone' | translate }}</label>
@@ -75,34 +68,32 @@
         type="text"
         id="telephone"
         maxlength="10"
-        formControlName="contato_telefone"
+        formControlName="telephone"
         placeholder="{{ 'modal.placeholder-telephone' | translate }}"
         [ngClass]="{
           'input-error':
-            contactForm.get('contato_telefone')?.invalid &&
-            contactForm.get('contato_telefone')?.touched,
+            contactForm.get('telephone')?.invalid && contactForm.get('telephone')?.touched,
         }"
       />
       <mat-error
         class="validation-error"
         *ngIf="
-          contactForm.get('contato_telefone')?.invalid &&
-          (contactForm.get('contato_telefone')?.touched ||
-            contactForm.get('contato_telefone')?.dirty)
+          contactForm.get('telephone')?.invalid &&
+          (contactForm.get('telephone')?.touched || contactForm.get('telephone')?.dirty)
         "
       >
-        {{ getErrorMessage('contato_telefone') }}
+        {{ getErrorMessage('telephone') }}
       </mat-error>
 
       <div style="display: flex">
-        <input type="checkbox" id="favorite" formControlName="contato_sn_favorito" />
+        <input type="checkbox" id="favorite" formControlName="favorite" />
         <label for="favorite" class="checkbox-label">
           {{ 'modal.label-favorite' | translate }}
         </label>
       </div>
 
       <div style="display: flex">
-        <input type="checkbox" id="active" formControlName="contato_sn_ativo" />
+        <input type="checkbox" id="active" formControlName="active" />
         <label for="active" class="checkbox-label">
           {{ 'modal.label-active' | translate }}
         </label>

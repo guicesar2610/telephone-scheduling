@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IContactValues } from '../../interfaces/icontact-list-values.interface';
-import { CONTACTS } from '../../contacts.mock';
+import { ContactListService } from '../../services/contact-list.service';
 
 @Component({
   selector: 'app-contact-list-modal',
@@ -16,31 +16,25 @@ export class ContactListModalComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<ContactListModalComponent>,
     private formBuilder: FormBuilder,
+    private contactListService: ContactListService,
     @Inject(MAT_DIALOG_DATA) public data: IContactValues
   ) {}
 
   ngOnInit() {
     this.title = this.data ? 'modal.title-update' : 'modal.title-add';
     this.contactForm = this.formBuilder.group({
-      contato_nome: [
-        this.data ? this.data.contato_nome : '',
-        [Validators.required, Validators.minLength(2)],
-      ],
-      contato_email: [
-        this.data ? this.data.contato_email : '',
-        [Validators.required, Validators.email],
-      ],
-      contato_celular: [
-        this.data ? this.data.contato_celular : '',
+      name: [this.data ? this.data.name : '', [Validators.required, Validators.minLength(2)]],
+      email: [this.data ? this.data.email : '', [Validators.required, Validators.email]],
+      cellphone: [
+        this.data ? this.data.cellphone : '',
         [Validators.required, Validators.pattern(/^\d{11}$/)],
       ],
-      contato_telefone: [
-        this.data ? this.data.contato_telefone : '',
+      telephone: [
+        this.data ? this.data.telephone : '',
         [Validators.required, Validators.pattern(/^\d{10}$/)],
       ],
-      contato_sn_favorito: [this.data ? this.data.contato_sn_favorito : false],
-      contato_sn_ativo: [this.data ? this.data.contato_sn_ativo : false],
-      contato_dh_cad: [this.data ? this.data.contato_dh_cad : ''],
+      favorite: [this.data ? this.data.favorite : false],
+      active: [this.data ? this.data.active : false],
     });
   }
 
@@ -53,23 +47,28 @@ export class ContactListModalComponent implements OnInit {
       const formData = this.contactForm.value;
 
       if (!this.data) {
-        const newId = CONTACTS.length > 0 ? Math.max(...CONTACTS.map(c => c.contato_id)) + 1 : 1;
-        const currentDate = new Date();
-        const formattedDate = currentDate.toISOString().split('.')[0];
-        const newContact: IContactValues = {
-          contato_id: newId,
-          ...formData,
-          contato_dh_cad: formattedDate,
-        };
-
-        this.dialogRef.close(newContact);
+        this.contactListService.createContactList(formData).subscribe({
+          next: () => {
+            this.dialogRef.close();
+          },
+          error: error => {
+            console.error('Erro ao criar contato', error);
+          },
+        });
       } else {
         const updatedContact: IContactValues = {
           ...this.data,
           ...formData,
         };
 
-        this.dialogRef.close(updatedContact);
+        this.contactListService.updateContactList(updatedContact.id, updatedContact).subscribe({
+          next: () => {
+            this.dialogRef.close(updatedContact);
+          },
+          error: error => {
+            console.error('Erro ao atualizar contato', error);
+          },
+        });
       }
     }
   }
@@ -88,10 +87,10 @@ export class ContactListModalComponent implements OnInit {
       return `Mínimo de ${requiredLength} caracteres.`;
     }
     if (control?.hasError('pattern')) {
-      if (formControlName === 'contato_celular') {
+      if (formControlName === 'cellphone') {
         return 'Celular deve ter 11 dígitos numéricos.';
       }
-      if (formControlName === 'contato_telefone') {
+      if (formControlName === 'telephone') {
         return 'Telefone deve ter 10 dígitos numéricos.';
       }
     }
