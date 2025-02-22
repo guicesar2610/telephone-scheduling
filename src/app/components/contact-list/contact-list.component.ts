@@ -92,10 +92,7 @@ export class ContactListComponent implements OnInit, OnChanges {
           return of([]);
         })
       )
-      .subscribe({
-        next: contacts => this.handleSuccess(contacts),
-        error: () => this.handleError(),
-      });
+      .subscribe();
   }
 
   applyFilter() {
