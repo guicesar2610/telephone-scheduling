@@ -1,27 +1,82 @@
-# TelephoneScheduling
+<h1>📞 TelephoneScheduling</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.9.
+Este projeto foi gerado com Angular CLI versão 17.3.12.
 
-## Development server
+<h2>🚀 Tecnologias Utilizadas</h2>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Angular: 17.3.12
 
-## Code scaffolding
+TypeScript: 5.4.5
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Prettier: 3.5.1
 
-## Build
+ESLint: 9.20.0
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<h2>🛠️ Funcionalidades</h2>
 
-## Running unit tests
+Agendamento de chamadas telefônicas.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Tradução com @ngx-translate/core.
 
-## Running end-to-end tests
+Notificações amigáveis com ngx-toastr.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<h2>📦 Como executar o projeto</h2>
 
-## Further help
+1. Clone o repositório
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+git clone <URL_DO_REPOSITORIO>
+cd telephone-scheduling
+
+2. Instale as dependências
+
+npm install
+
+3. Inicie o servidor de desenvolvimento
+
+ng serve
+
+Acesse o projeto em: http://localhost:4200
+
+<h2>🛠️ Comandos Disponíveis</h2>
+
+🚧 Build do Projeto
+
+npm run build
+
+Os artefatos serão gerados no diretório dist/.
+
+<h2>✅ Testes Unitários</h2>
+
+npm run test
+
+Executa os testes via Karma.
+
+<h2>🧪 Testes End-to-End</h2>
+
+npm run e2e
+
+Adicione um pacote de testes end-to-end antes de executar este comando.
+
+<h2>🎨 Formatação de Código</h2>
+
+npm run format
+
+Verifica se o código está formatado corretamente:
+
+npm run format:check
+
+<h2>🔍 Linter</h2>
+
+npm run lint
+
+Para corrigir problemas automaticamente:
+
+npm run lint:fix
+
+<h2>📚 Mais Ajuda</h2>
+
+Para mais informações sobre o Angular CLI, utilize:
+
+ng help
+
+Ou acesse a documentação oficial.
