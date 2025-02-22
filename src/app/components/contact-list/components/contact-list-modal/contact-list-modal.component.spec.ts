@@ -8,10 +8,9 @@ describe('ContactListModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContactListModalComponent]
-    })
-    .compileComponents();
-    
+      imports: [ContactListModalComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ContactListModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
