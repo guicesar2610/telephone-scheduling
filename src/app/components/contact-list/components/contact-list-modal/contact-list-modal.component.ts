@@ -5,6 +5,7 @@ import { IContactValues } from '../../interfaces/icontact-list-values.interface'
 import { ContactListService } from '../../services/contact-list.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact-list-modal',
@@ -57,8 +58,14 @@ export class ContactListModalComponent implements OnInit {
     });
   }
 
-  handleError() {
-    this.translate.get('error.message-generic').subscribe((message: string) => {
+  handleError(error: HttpErrorResponse) {
+    console.log('error', error);
+    const errorMessage =
+      error?.error === 'O celular já foi cadastrado.'
+        ? 'error.409-message'
+        : 'error.message-generic';
+
+    this.translate.get(errorMessage).subscribe((message: string) => {
       this.translate.get('error.title-generic').subscribe((title: string) => {
         this.toast.error(message, title, {
           closeButton: true,
@@ -70,7 +77,7 @@ export class ContactListModalComponent implements OnInit {
   onCreate(formData: IContactValues) {
     this.contactListService.createContactList(formData).subscribe({
       next: () => this.handleSuccess(),
-      error: () => this.handleError(),
+      error: error => this.handleError(error),
     });
   }
 
@@ -82,7 +89,7 @@ export class ContactListModalComponent implements OnInit {
 
     this.contactListService.updateContactList(updatedContact.id, updatedContact).subscribe({
       next: () => this.handleSuccess(updatedContact),
-      error: () => this.handleError(),
+      error: error => this.handleError(error),
     });
   }
 
